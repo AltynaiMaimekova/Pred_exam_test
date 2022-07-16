@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <form method="POST" action="{{ url_for('customer_create') }}">
+        {{ form.csrf_token }}
+        <div class="card-header">
+            <h2>Добавление нового клиента</h2>
+        </div>
+        <div class="content-inside">
+            {{ form.name.label() }}
+            {{ form.name(class="form-control", placeholder="ФИО") }}
+            {{ form.phone_number.label() }}
+            {{ form.phone_number(class="form-control", placeholder="Телефон") }}
+            {{ form.item.label() }}
+            {{ form.item(class="form-control", placeholder="Товар") }}
+            {{ form.quantity.label() }}
+            {{ form.quantity(class="form-control", placeholder="Количество") }}
+            {{ form.price.label() }}
+            {{ form.price(class="form-control", placeholder="Цена") }}
+            {{ form.submit(class="btn btn-primary submit-button") }}
+        </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

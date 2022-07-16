@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ФИО</th>
+          <th scope="col">Номер телефона</th>
+          <th scope="col">Товар</th>
+          <th scope="col">Количество</th>
+          <th scope="col">Цена</th>
+          <th scope="col">Продавец</th>
+          <th scope="col">Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for customer in customers %}
+        <tr>
+          <th scope="row">{{ customer.id }}</th>
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.phone_number }}</td>
+          <td>{{ customer.item }}</td>
+          <td>{{ customer.quantity }}</td>
+          <td>{{ customer.price }}</td>
+          <td>{{ customer.user.username }}</td>
+          <td><a class="btn btn-outline-primary" href="{{ url_for('customer_detail', customer_id=customer.id) }}">Подробнее</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}

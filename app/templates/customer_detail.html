@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ customer.name }}</h5>
+      <p class="card-text">Товар: {{ customer.item }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">тел: {{ customer.phone_number }}</li>
+      <li class="list-group-item">Количество: {{ customer.quantity }} единиц</li>
+      <li class="list-group-item">Цена: {{ customer.price }} долларов США</li>
+      <li class="list-group-item">Продавец {{ customer.user.username }}</li>
+    </ul>
+    <div class="card-body">
+      {% if current_user.is_authenticated and current_user.id == customer.user.id %}
+      <a href="{{ url_for('customer_delete', customer_id=customer.id) }}" class="card-link">Удалить запись</a>
+      <a href="{{ url_for('customer_update', customer_id=customer.id) }}" class="card-link">Изменить запись</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
